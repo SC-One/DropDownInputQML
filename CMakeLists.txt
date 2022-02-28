@@ -45,7 +45,9 @@ endif()
 target_compile_definitions(DropDownInputQML
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(DropDownInputQML
-  PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+  PRIVATE Qt${QT_VERSION_MAJOR}::Core
+  Qt${QT_VERSION_MAJOR}::Quick
+  )
 
 set_target_properties(DropDownInputQML PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
