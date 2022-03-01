@@ -27,7 +27,7 @@ Item {
 
         TagItemsView{
             visible:rootDropDown.showSuggestion & tagItemInput.activeSuggestions
-            model:filteredTags.filteredModel;
+            model: filteredTags;
             Layout.fillWidth: true;
             Layout.fillHeight: true;
         }

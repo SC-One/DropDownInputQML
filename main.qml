@@ -10,28 +10,30 @@ Window {
     visible: true
     title: qsTr("DropDown Test")
 
-    TagItemsModel {
-        // Example (original & init original data):
-        id: tagListModel;
-        function makeid(length) {
-            var result           = '';
-            var characters       = '9912898279178425718xyz0123456789';
-            var charactersLength = characters.length;
-            for ( var i = 0; i < length; i++ ) {
-              result += characters.charAt(Math.floor(Math.random() *
-         charactersLength));
-           }
-           return result;
-        }
+    Item{
+        TagItemsModel {
+            // Example (original & init original data):
+            id: tagListModel;
+            function makeid(length) {
+                var result           = '';
+                var characters       = '9912898279178425718xyz0123456789';
+                var charactersLength = characters.length;
+                for ( var i = 0; i < length; i++ ) {
+                    result += characters.charAt(Math.floor(Math.random() *
+                                                           charactersLength));
+                }
+                return result;
+            }
 
-        Component.onCompleted: {
+            Component.onCompleted: {
 
-            var x = tagListModel.createTagItem();
-            for(var i = 0; i<7;++i)
-            {
-                x.name = makeid(20);
-                x.link = '<html><style type="text/css"></style><a href="http://google.com">google</a></html>';
-                tagListModel.addTagItem(x);
+                var x = tagListModel.createTagItem();
+                for(var i = 0; i<7;++i)
+                {
+                    x.name = tagListModel.makeid(20);
+                    x.link = '<html><style type="text/css"></style><a href="http://google.com">google</a></html>';
+                    tagListModel.addTagItem(x);
+                }
             }
         }
     }

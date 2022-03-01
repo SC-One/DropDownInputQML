@@ -3,22 +3,25 @@
 
 #include <QObject>
 #include <QQmlEngine>
+#include <QSortFilterProxyModel>
 #include <QStringList>
 class TagItemsModel;
-class QSortFilterProxyModel;
-class FilteredTags : public QObject
+class FilteredTags : public QSortFilterProxyModel
 {
     Q_OBJECT
-    Q_PROPERTY(QSortFilterProxyModel* filteredModel READ filteredModel CONSTANT)
     Q_PROPERTY(TagItemsModel* originalModel READ originalModel WRITE setOriginalModel NOTIFY
                    originalModelChanged)
     Q_PROPERTY(QString filterPattern READ filterPattern WRITE setFilterPattern NOTIFY
                    filterPatternsChanged)
+    // QSortFilterProxyModel interface
+
 public:
     explicit FilteredTags(QObject* parent = nullptr);
 
-    QSortFilterProxyModel* filteredModel() const;
+public:
+    bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const override;
 
+public:
     TagItemsModel* originalModel() const;
     void setOriginalModel(TagItemsModel* newOriginalModel);
 
@@ -41,7 +44,6 @@ private:
 
 private:
     QString _patternString;
-    QSortFilterProxyModel* _filteredModel;
     TagItemsModel* _originalModel;
 };
 
