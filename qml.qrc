@@ -2,5 +2,11 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>DropDownInput/TagItem.qml</file>
+        <file>DropDownInput/TagItemsView.qml</file>
+        <file>DropDownInput/StandardRectangleLayout.qml</file>
+        <file>DropDownInput/TagItemInput.qml</file>
+        <file>DropDownInput/ChoosedTagItem.qml</file>
+        <file>DropDownInput/ChoosedTagItemsView.qml</file>
+        <file>DropDownInput/DropDownInput.qml</file>
     </qresource>
 </RCC>

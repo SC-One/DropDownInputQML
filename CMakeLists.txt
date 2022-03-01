@@ -17,6 +17,11 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick REQUIRED)
 set(PROJECT_SOURCES
         main.cpp
         qml.qrc
+        DropDownInput/TagItemData.h
+        DropDownInput/TagItemsModel.h
+        DropDownInput/TagItemsModel.cpp
+        DropDownInput/FilteredTags.h
+        DropDownInput/FilteredTags.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
