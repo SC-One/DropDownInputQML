@@ -19,10 +19,23 @@ Rectangle {
                 text: root.tagItemName
             }
         }
-        StandardRectangleLayout{
+        Rectangle{
+            color:"transparent";
+            MouseArea{
+                anchors.fill: closeButton
+                hoverEnabled: true
+                onEntered: closeButton.color = "#9cc1db"
+                onExited: closeButton.color = "transparent";
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    root.deleteRequested();
+                }
+            }
             id:closeButton
             radius:4
             Layout.alignment: Qt.AlignRight
+            Layout.minimumWidth: closeText.width + 5
+            Layout.minimumHeight: closeText.height + 5
             Text {
                 id: closeText
                 text: qsTr("✖")

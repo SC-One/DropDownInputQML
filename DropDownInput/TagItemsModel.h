@@ -33,6 +33,7 @@ public:
 public:
     Q_INVOKABLE bool addTagItem(const TagItemData& data);
     Q_INVOKABLE void generateHeader();
+    Q_INVOKABLE bool contains(const QString& name);
     Q_INVOKABLE TagItemData getTagItemData(const QString& name) const
     {
         for(auto const& item : _tagItems)

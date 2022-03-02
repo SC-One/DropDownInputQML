@@ -18,18 +18,27 @@ Item {
 
     ColumnLayout{
         anchors.fill: parent
-        spacing: -5;
         TagItemInput{
             id:tagItemInput
             Layout.fillWidth: true;
             height:45;
+            originModel:filteredTags.originalModel;
         }
-
-        TagItemsView{
-            visible:rootDropDown.showSuggestion & tagItemInput.activeSuggestions
-            model: filteredTags;
-            Layout.fillWidth: true;
-            Layout.fillHeight: true;
-        }
+        /// More option like some checkbox ...
+        // and etc
     }
+
+
+    TagItemsView{
+        visible:rootDropDown.showSuggestion & tagItemInput.activeSuggestions
+        model: filteredTags;
+        x:tagItemInput.x
+        y:tagItemInput.height+tagItemInput.y
+        width: tagItemInput.width
+        height: 107
+        onTagItemSelected: (name)=> {
+                               tagItemInput.addToEditor(name);
+                           }
+    }
+
 }

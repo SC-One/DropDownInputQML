@@ -4,14 +4,39 @@ import QtQuick.Layouts 1.3
 
 ScrollView{
     id:root
+    clip:true
     required property var model;
-    Rectangle{
-        anchors.fill: parent
-        color:"black"
-        radius: 5
+    signal tagItemSelected(string name);
+    ScrollBar.vertical.policy: ScrollBar.AsNeeded
+    background: Rectangle {
+        id:backContent
+        color:"#4f4f4f"
+        radius: 8
+        border.color: "gray"
+        border.width: 1
+        property bool stateVisible: backContent.visible
+        states: [
+            State { when: backContent.stateVisible;
+                PropertyChanges {   target: backContent; opacity: 1.0    }
+            },
+            State { when: !backContent.stateVisible;
+                PropertyChanges {   target: backContent; opacity: 0.0    }
+            }
+        ]
+        transitions: Transition {
+            NumberAnimation { property: "opacity"; duration: 270}
+        }
+    }
+
+    Flickable{
+        id:content
+        contentHeight: flow.height
+        width: parent.width
+        //        height: 800
+        //        anchors.fill: parent
         Flow{
             id:flow
-            anchors.fill: parent
+            width:parent.width
             padding: 4
             spacing:10
             function mar(){
@@ -35,6 +60,9 @@ ScrollView{
                     nameText: Name;
                     descriptionText: Description;
                     linkText: Link;
+                    onClicked: {
+                        root.tagItemSelected(nameText);
+                    }
                 }
             }
         }

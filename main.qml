@@ -28,10 +28,12 @@ Window {
             Component.onCompleted: {
 
                 var x = tagListModel.createTagItem();
-                for(var i = 0; i<7;++i)
+                for(var i = 0; i<2;++i)
                 {
-                    x.name = tagListModel.makeid(20);
-                    x.link = '<html><style type="text/css"></style><a href="http://google.com">google</a></html>';
+                    x.name = tagListModel.makeid(5);
+                    x.description = "Description: This is simple text to Show QML power.This is simple text to Show QML power.";
+
+                    x.link = '<html><style type="text/css"></style><a href="http://hcoding.ir">HCoding</a></html>';
                     tagListModel.addTagItem(x);
                 }
             }

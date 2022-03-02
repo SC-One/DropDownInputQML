@@ -5,18 +5,23 @@ Rectangle {
     id:rootTagItem
     implicitWidth: 200
     implicitHeight:100
+    clip:true
     signal clicked()
-    signal selected()
 
     property string nameText:           "None";
     property string descriptionText:    "None";
     property string linkText:           "None";
+
+    onDescriptionTextChanged: {
+        description.text = descriptionText.split(0,40)+" ...";
+    }
 
     color:"gray"
     radius: 1
     MouseArea{
         id: linkAreaName
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
         onClicked: {
             rootTagItem.clicked();
         }
@@ -27,12 +32,14 @@ Rectangle {
         spacing: 2
         StandardRectangleLayout{
             Layout.alignment: Qt.AlignCenter
-            color:"pink"
-            Layout.fillWidth: true
+            color:"#707070"
+//            Layout.fillWidth: true
+            width:rootTagItem.width
             Text {
                 id: name
                 font.bold: true
-                color:"green"
+                color:"white"
+                font.pointSize: 14;
                 anchors.centerIn: parent
                 text: rootTagItem.nameText
             }
@@ -40,33 +47,39 @@ Rectangle {
         }
 
         StandardRectangleLayout{
-            Layout.fillWidth: true
+//            Layout.fillWidth: true
             Layout.fillHeight: true
             Text {
                 id: description
                 color:"white"
-                text: rootTagItem.descriptionText
+                wrapMode: Text.Wrap
+                width:rootTagItem.width
+                font.pointSize: 10;
             }
         }
         StandardRectangleLayout{
-            Layout.fillWidth: true
+//            Layout.fillWidth: true
+            width:rootTagItem.width
             Text {
                 id: hyperLink
                 text: rootTagItem.linkText
-                linkColor: "aqua"
+                linkColor: "#DBB2FF"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
         }
     }
 
-    onFocusChanged: {
-        if(focus)
-        {
-            rootTagItem.color.a *= 0.5;
+
+    property bool stateVisible: rootTagItem.visible
+    states: [
+        State { when: rootTagItem.stateVisible;
+            PropertyChanges {   target: rootTagItem; opacity: 1.0    }
+        },
+        State { when: !rootTagItem.stateVisible;
+            PropertyChanges {   target: rootTagItem; opacity: 0.0    }
         }
-        else{
-            rootTagItem.color = "gray";
-        }
-        rootTagItem.selected();
+    ]
+    transitions: Transition {
+        NumberAnimation { property: "opacity"; duration: 400}
     }
 }

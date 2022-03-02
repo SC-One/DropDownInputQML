@@ -73,3 +73,15 @@ void TagItemsModel::generateHeader()
         qDebug() << headerData(0, Qt::Horizontal, i);
     }
 }
+
+bool TagItemsModel::contains(const QString& name)
+{
+    for(auto const& item : _tagItems)
+    {
+        if(item == name)
+        {
+            return true;
+        }
+    }
+    return false;
+}

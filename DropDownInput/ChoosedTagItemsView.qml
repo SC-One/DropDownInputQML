@@ -9,7 +9,7 @@ Flow{
     QtObject
     {
         id:privateProps
-        property ListModel tags: ListModel { ListElement { name:"NaN"; } };
+        property ListModel tags: ListModel { };
         onTagsChanged: {
             for(var i = tagChoosed.length; i != 0; --i)
                 tagChoosed.pop();
@@ -46,15 +46,12 @@ Flow{
         ChoosedTagItem{
             tagItemName:  name
             onDeleteRequested: {
-//                console.log(tagItemName);
+                console.log(tagItemName);
                 totalChoosed.deleteRequested(tagItemName);
             }
         }
     }
-
-//    //Test:
-//    onDeleteRequested:
-//    {
-//        console.log(nameDeleted);
-//    }
+    onDeleteRequested:(nameDeleted)=> {
+                          totalChoosed.pop(nameDeleted)
+                      }
 }
