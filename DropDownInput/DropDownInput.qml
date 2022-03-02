@@ -35,7 +35,7 @@ Item {
         x:tagItemInput.x
         y:tagItemInput.height+tagItemInput.y
         width: tagItemInput.width
-        height: 107
+        height: 120
         onTagItemSelected: (name)=> {
                                tagItemInput.addToEditor(name);
                            }

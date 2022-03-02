@@ -16,7 +16,7 @@ Window {
             id: tagListModel;
             function makeid(length) {
                 var result           = '';
-                var characters       = '9912898279178425718xyz0123456789';
+                var characters       = 'abcd';
                 var charactersLength = characters.length;
                 for ( var i = 0; i < length; i++ ) {
                     result += characters.charAt(Math.floor(Math.random() *
@@ -28,7 +28,7 @@ Window {
             Component.onCompleted: {
 
                 var x = tagListModel.createTagItem();
-                for(var i = 0; i<2;++i)
+                for(var i = 0; i<8;++i)
                 {
                     x.name = tagListModel.makeid(5);
                     x.description = "Description: This is simple text to Show QML power.This is simple text to Show QML power.";

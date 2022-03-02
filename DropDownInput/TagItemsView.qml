@@ -37,7 +37,7 @@ ScrollView{
         Flow{
             id:flow
             width:parent.width
-            padding: 4
+            padding: 8
             spacing:10
             function mar(){
                 var rowCount = parent.width / (flow.children[0].width + flow.spacing);
