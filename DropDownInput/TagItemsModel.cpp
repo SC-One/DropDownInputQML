@@ -70,13 +70,12 @@ void TagItemsModel::generateHeader()
         ++i)
     {
         setHeaderData(0, Qt::Horizontal, _roles[i], i);
-        qDebug() << headerData(0, Qt::Horizontal, i);
     }
 }
 
 bool TagItemsModel::contains(const QString& name)
 {
-    for(auto const& item : _tagItems)
+    for(auto const& item : qAsConst(_tagItems))
     {
         if(item == name)
         {

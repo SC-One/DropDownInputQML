@@ -9,14 +9,13 @@ Window {
     height: 500
     visible: true
     title: qsTr("DropDown Test")
-
     Item{
         TagItemsModel {
             // Example (original & init original data):
             id: tagListModel;
             function makeid(length) {
                 var result           = '';
-                var characters       = 'abcd';
+                var characters       = 'abcdefg1234567890';
                 var charactersLength = characters.length;
                 for ( var i = 0; i < length; i++ ) {
                     result += characters.charAt(Math.floor(Math.random() *
@@ -26,11 +25,10 @@ Window {
             }
 
             Component.onCompleted: {
-
                 var x = tagListModel.createTagItem();
-                for(var i = 0; i<8;++i)
+                for(var i = 0; i<25;++i)
                 {
-                    x.name = tagListModel.makeid(5);
+                    x.name = tagListModel.makeid(12);
                     x.description = "Description: This is simple text to Show QML power.This is simple text to Show QML power.";
 
                     x.link = '<html><style type="text/css"></style><a href="http://hcoding.ir">HCoding</a></html>';
