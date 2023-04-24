@@ -19,7 +19,7 @@ Flow{
                 for(var i = totalChoosed.tagChoosed.length; i !== 0; --i)
                     totalChoosed.tagChoosed.pop();
                 for(var j = 0; j < privateProps.tags.count; ++j)
-                    totalChoosed.tagChoosed.push(privateProps.tags.get(i).name);
+                    totalChoosed.tagChoosed.push(privateProps.tags.get(j).name);
             }
         }
 
