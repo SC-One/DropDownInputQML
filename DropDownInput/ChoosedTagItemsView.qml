@@ -6,15 +6,21 @@ Flow{
     property var tagChoosed:[];
     signal deleteRequested(string nameDeleted)
 
-    QtObject
+    signal addedNewChoosedTag(string name)
+    signal deletedChoosedTag(string name)
+
+    Item
     {
         id:privateProps
-        property ListModel tags: ListModel { };
-        onTagsChanged: {
-            for(var i = tagChoosed.length; i != 0; --i)
-                tagChoosed.pop();
-            for(var j = 0; j < tags.count; ++j)
-                tagChoosed.push(model.get(i).name);
+        property ListModel tags: privTags;
+        ListModel {
+            id:privTags
+            onCountChanged: {
+                for(var i = totalChoosed.tagChoosed.length; i !== 0; --i)
+                    totalChoosed.tagChoosed.pop();
+                for(var j = 0; j < privateProps.tags.count; ++j)
+                    totalChoosed.tagChoosed.push(privateProps.tags.get(j).name);
+            }
         }
 
         function find(model, criteria) {
@@ -26,16 +32,20 @@ Flow{
     function push(itemText)
     {
         var found = privateProps.find(privateProps.tags, itemText);
-        if(found === null)
+        if(found === null){
             privateProps.tags.append({'name': itemText });
+            totalChoosed.addedNewChoosedTag(itemText);
+        }
         else
             console.log("Exist!");
     }
     function pop(itemText)
     {
         var found = privateProps.find(privateProps.tags, itemText);
-        if(found !== null)
+        if(found !== null){
             privateProps.tags.remove(found);
+            totalChoosed.deletedChoosedTag(itemText);
+        }
         else
             console.log("Not exist!");
     }
